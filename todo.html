@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:lightblue
+        }
+        .card{
+            border:2px solid black;
+            padding: 10px;
+            width:300px;
+            background-color:plum;
+        }
+        .btn10{
+            position: relative;
+            left:180px;
+            margin:10px;
+            top:10px;
+            border-radius: 20px;
+            padding:10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+    Task:<input type="text" name="name" placeholder="Name"><br><br>
+    Details:<input type="text" name="info" placeholder="details"><br>
+    <button onclick=handletodo() class="btn10">Add todo</button>
+    </div>
+    <hr>
+    <div id="container"></div>
+    <script>
+        let container=document.getElementById("container")
+
+        function handletodo(){
+        todo=document.createElement("div")
+        todo.style.border="1px solid black"
+        todo.style.padding="10px"
+        let task=document.getElementsByName("name")[0]
+        let details=document.getElementsByName("info")[0]
+        if(task===" "|| details===""){
+            alert("values are required")
+        }else{
+        let title=document.createElement("h1")
+        title.innerText=task.value
+        let p1=document.createElement("p")
+        p1.innerText=details.value
+        todo.appendChild(title)
+        todo.appendChild(p1)
+        container.appendChild(todo)
+        let edit=document.createElement("button")
+        edit.innerText="EDIT"
+        todo.appendChild(edit)
+        edit.style.backgroundColor="blue"
+        edit.style.width="70px"
+        edit.style.color="white"
+        edit.style.borderRadius="20px"
+        let btn_ele=document.createElement("button")
+        btn_ele.innerText="DELETE"
+        btn_ele.style.borderRadius="20px"
+        let completed=document.createElement("button")
+        completed.innerText="COMPLETED"
+        todo.appendChild(completed)
+         completed.style.margin="50px"
+         completed.style.backgroundColor="yellow"
+         completed.style.borderRadius="20px"
+
+
+         todo.appendChild(btn_ele)
+        btn_ele.style.backgroundColor="red"
+        btn_ele.style.color="white"
+        btn_ele.style.margin="30px" 
+        edit.addEventListener("click",()=>{
+            task.value=title.innerText
+            details.value=p1.innerText
+            container.removeChild(todo)
+        })
+        btn_ele.addEventListener("click",()=>{
+            container.removeChild(todo)
+        })
+        completed.addEventListener("click",()=>{
+            todo.style.backgroundColor="orange"
+            p1.style.textDecoration="line-through"
+            p1.style.backgroundColor="green"
+        })
+
+        }
+        task.value=" "
+        details.value=" "
+        
+        
+        
+        
+        
+        }
+
+    </script>
+
+</body>
+</html>
